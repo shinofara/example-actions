@@ -1,8 +1,6 @@
 # コードを実行するコンテナイメージ
-FROM alpine:3.10
+FROM golang:1.7
 
-# アクションのリポジトリからコードファイルをコンテナのファイルシステムパス `/`にコピー
-COPY entrypoint.sh /entrypoint.sh
-
-# dockerコンテナが起動する際に実行されるコードファイル (`entrypoint.sh`)
+COPY . .
+RUN go build -o /bin/check
 ENTRYPOINT ["/entrypoint.sh"]
